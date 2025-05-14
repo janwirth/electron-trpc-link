@@ -93,10 +93,16 @@ class IPCHandler<TRouter extends AnyTRPCRouter> {
     const webContentsId = win.webContents.id;
     win.webContents.on('did-start-navigation', ({ isSameDocument, frame }) => {
       if (!isSameDocument) {
-        this.#cleanUpSubscriptions({
-          webContentsId: webContentsId,
-          frameRoutingId: frame.routingId,
-        });
+        if (frame) {
+          this.#cleanUpSubscriptions({
+            webContentsId: webContentsId,
+            frameRoutingId: frame.routingId,
+          });
+        } else {
+          this.#cleanUpSubscriptions({
+            webContentsId: webContentsId,
+          });
+        }
       }
     });
     win.webContents.on('destroyed', () => {
