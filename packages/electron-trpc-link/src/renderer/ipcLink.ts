@@ -34,7 +34,7 @@ const getElectronTRPC = () => {
 
   if (!electronTRPC) {
     throw new Error(
-      'Could not find `electronTRPC` global. Check that `exposeElectronTRPC` has been called in your preload file.'
+      'Could not find `electronTRPC` global. Check that `exposeElectronTRPC` has been called in your preload file.',
     );
   }
 
@@ -65,6 +65,7 @@ class IPCClient {
   }
 
   request(op: Operation, callbacks: IPCCallbacks) {
+    console.log('request', op);
     const { type, id } = op;
 
     this.#pendingRequests.set(id, {
@@ -82,7 +83,9 @@ class IPCClient {
 
       callbacks?.complete();
 
+      // this is the cleanup for the subscription
       if (type === 'subscription') {
+        console.log('stopping subscription');
         this.#electronTRPC.sendMessage({
           id,
           method: 'subscription.stop',
@@ -97,7 +100,7 @@ export type IPCLinkOptions<TRouter extends AnyTRPCRouter> = TransformerOptions<
 >;
 
 export function ipcLink<TRouter extends AnyTRPCRouter>(
-  opts?: IPCLinkOptions<TRouter>
+  opts?: IPCLinkOptions<TRouter>,
 ): TRPCLink<TRouter> {
   return () => {
     const client = new IPCClient();

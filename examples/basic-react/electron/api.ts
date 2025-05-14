@@ -8,17 +8,21 @@ const ee = new EventEmitter();
 const t = initTRPC.create({ isServer: true });
 
 export const router = t.router({
-  greeting: t.procedure.input(z.object({ name: z.string() })).query((req) => {
+  greeting: t.procedure.input(z.object({ name: z.string() })).query(req => {
     const { input } = req;
+    setTimeout(() => {
+      ee.emit('greeting', `Greeted ${input.name}`);
+      console.log('greeting', `Greeted ${input.name}`);
+    }, 1000);
 
-    ee.emit('greeting', `Greeted ${input.name}`);
     return {
       text: `Hello ${input.name}` as const,
     };
   }),
-  subscription: t.procedure.subscription(() => {
-    return observable((emit) => {
+  subscription2: t.procedure.subscription(() => {
+    return observable(emit => {
       function onGreet(text: string) {
+        console.log('greeting', text);
         emit.next({ text });
       }
 
@@ -28,6 +32,10 @@ export const router = t.router({
         ee.off('greeting', onGreet);
       };
     });
+  }),
+  subscription: t.procedure.subscription(async function* () {
+    yield { text: 'WASSUP' };
+    yield { text: 'WASSUP2' };
   }),
 });
 

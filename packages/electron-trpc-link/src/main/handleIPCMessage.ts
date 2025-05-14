@@ -37,6 +37,7 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
   event: IpcMainEvent;
   subscriptions: Map<string, AbortController>;
 }) {
+  // console.log('handling', message, subscriptions);
   if (message.method === 'subscription.stop') {
     subscriptions.get(internalId)?.abort();
     return;
@@ -50,6 +51,7 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
   const ctx = (await createContext?.({ event })) ?? {};
 
   const respond = (response: TRPCResponseMessage) => {
+    // console.log('responding', response);
     if (event.sender.isDestroyed()) return;
     event.reply(
       ELECTRON_TRPC_CHANNEL,
@@ -62,11 +64,13 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
     const result = await callTRPCProcedure({
       ctx,
       path,
-      procedures: router._def.procedures,
+      // procedures: router._def.procedures,
       getRawInput: async () => input,
       type,
       signal: abortController.signal,
+      router,
     });
+    console.log('result', result);
 
     const isIterableResult = isAsyncIterable(result) || isObservable(result);
 
@@ -197,6 +201,7 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
       });
       abortController.abort();
     });
+    // console.log('responding', typeof response, type);
 
     respond({
       id,
@@ -221,3 +226,7 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
     });
   }
 }
+console.log('ITERATOR EXAMPLE', async function* () {
+  yield 1;
+  yield 2;
+});

@@ -7,10 +7,10 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, './index.ts'),
-      name: 'trpc-electron',
+      name: '@janwirth/electron-trpc-link',
       formats: ['es', 'cjs'],
       fileName: format =>
-        ({ es: 'main.mjs', cjs: 'main.cjs' }[format as 'es' | 'cjs']),
+        ({ es: 'main.mjs', cjs: 'main.cjs' })[format as 'es' | 'cjs'],
     },
     outDir: path.resolve(__dirname, '../../dist'),
     rollupOptions: {

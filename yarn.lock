@@ -5032,9 +5032,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"trpc-electron-workspace@workspace:.":
+"@janwirth/electron-trpc-link-workspace@workspace:.":
   version: 0.0.0-use.local
-  resolution: "trpc-electron-workspace@workspace:."
+  resolution: "@janwirth/electron-trpc-link-workspace@workspace:."
   dependencies:
     "@changesets/changelog-github": "npm:^0.4.8"
     "@changesets/cli": "npm:^2.26.1"
@@ -5048,9 +5048,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"trpc-electron@workspace:packages/trpc-electron":
+"@janwirth/electron-trpc-link@workspace:packages/electron-trpc-link":
   version: 0.0.0-use.local
-  resolution: "trpc-electron@workspace:packages/trpc-electron"
+  resolution: "@janwirth/electron-trpc-link@workspace:packages/electron-trpc-link"
   dependencies:
     "@tanstack/react-query": "npm:^4.29.14"
     "@trpc/client": "npm:next"

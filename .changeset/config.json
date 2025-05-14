@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.1.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "mat-sz/trpc-electron" }
+    { "repo": "mat-sz/@janwirth/electron-trpc-link" }
   ],
   "commit": false,
   "fixed": [],

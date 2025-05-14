@@ -2,10 +2,10 @@ import { defineConfig } from 'vitepress';
 import UnoCSS from 'unocss/vite';
 
 export default defineConfig({
-  title: 'trpc-electron',
+  title: '@janwirth/electron-trpc-link',
   description: 'Just playing around.',
   themeConfig: {
-    repo: 'mat-sz/trpc-electron',
+    repo: 'mat-sz/@janwirth/electron-trpc-link',
     nav: [{ text: 'Guide', link: '/getting-started' }],
     sidebar: [
       {

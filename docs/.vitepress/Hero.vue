@@ -3,7 +3,7 @@
     <h1
       class="text-12 md-text-16 font-700 tracking-tighter leading-none pb-8 color-[var(--vp-home-hero-name-color)]"
     >
-      trpc-electron
+      @janwirth/electron-trpc-link
     </h1>
 
     <p
@@ -21,7 +21,7 @@
 
       <a
         class="py-2 px-6 block rounded-full font-600 text-4 bg-[var(--vp-button-alt-bg)] border border-solid border-[var(--vp-button-alt-border)]"
-        href="https://github.com/mat-sz/trpc-electron"
+        href="https://github.com/mat-sz/@janwirth/electron-trpc-link"
         target="_blank"
         >View on Github</a
       >

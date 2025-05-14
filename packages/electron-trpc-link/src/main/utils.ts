@@ -6,7 +6,7 @@ const asyncIteratorsSupported =
   typeof Symbol === 'function' && !!Symbol.asyncIterator;
 
 export function isAsyncIterable<TValue>(
-  value: unknown
+  value: unknown,
 ): value is AsyncIterable<TValue> {
   return (
     asyncIteratorsSupported && isObject(value) && Symbol.asyncIterator in value
@@ -22,13 +22,16 @@ export function isAsyncIterable<TValue>(
  */
 export function makeAsyncResource<T>(
   thing: T,
-  dispose: () => Promise<void>
+  dispose: () => Promise<void>,
 ): T & AsyncDisposable {
+  console.log('makeAsyncResource', thing, dispose);
   const it = thing as T & AsyncDisposable;
 
   // eslint-disable-next-line no-restricted-syntax
   if (it[Symbol.asyncDispose]) {
-    throw new Error('Symbol.asyncDispose already exists');
+    console.log(Symbol.asyncDispose, it[Symbol.asyncDispose]);
+    return it;
+    // throw new Error('Symbol.asyncDispose already exists');
   }
 
   // eslint-disable-next-line no-restricted-syntax
@@ -38,7 +41,7 @@ export function makeAsyncResource<T>(
 }
 
 export function iteratorResource<TYield, TReturn, TNext>(
-  iterable: AsyncIterable<TYield, TReturn, TNext>
+  iterable: AsyncIterable<TYield, TReturn, TNext>,
 ): AsyncIterator<TYield, TReturn, TNext> & AsyncDisposable {
   const iterator = iterable[Symbol.asyncIterator]();
 

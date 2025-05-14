@@ -1,17 +1,17 @@
-# trpc-electron
+# @janwirth/electron-trpc-link
 
 > [!NOTE]
 > This is a fork of [jsonnull/electron-trpc](https://github.com/jsonnull/electron-trpc) for TRPC v11.x.x since that version introduces many breaking changes.
 
 <p>
-  <a href="https://www.npmjs.com/package/trpc-electron">
-    <img alt="NPM" src="https://img.shields.io/npm/v/trpc-electron"/>
+  <a href="https://www.npmjs.com/package/@janwirth/electron-trpc-link">
+    <img alt="NPM" src="https://img.shields.io/npm/v/@janwirth/electron-trpc-link"/>
   </a>
-  <a href="https://codecov.io/gh/mat-sz/trpc-electron"> 
-  <img src="https://codecov.io/gh/mat-sz/trpc-electron/branch/main/graph/badge.svg?token=DU33O0D9LZ"/> 
+  <a href="https://codecov.io/gh/mat-sz/@janwirth/electron-trpc-link"> 
+  <img src="https://codecov.io/gh/mat-sz/@janwirth/electron-trpc-link/branch/main/graph/badge.svg?token=DU33O0D9LZ"/> 
   </a>
   <span>
-    <img alt="MIT" src="https://img.shields.io/npm/l/trpc-electron"/>
+    <img alt="MIT" src="https://img.shields.io/npm/l/@janwirth/electron-trpc-link"/>
   </span>
 </p>
 
@@ -28,13 +28,13 @@
 
 ```sh
 # Using pnpm
-pnpm add trpc-electron
+pnpm add @janwirth/electron-trpc-link
 
 # Using yarn
-yarn add trpc-electron
+yarn add @janwirth/electron-trpc-link
 
 # Using npm
-npm install --save trpc-electron
+npm install --save @janwirth/electron-trpc-link
 ```
 
 ## Basic Setup
@@ -43,7 +43,7 @@ npm install --save trpc-electron
 
    ```ts
    import { app } from 'electron';
-   import { createIPCHandler } from 'trpc-electron/main';
+   import { createIPCHandler } from '@janwirth/electron-trpc-link/main';
    import { router } from './api';
 
    app.on('ready', () => {
@@ -61,20 +61,20 @@ npm install --save trpc-electron
 2. Expose the IPC to the render process from the [preload file](https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts):
 
    ```ts
-   import { exposeElectronTRPC } from 'trpc-electron/main';
+   import { exposeElectronTRPC } from '@janwirth/electron-trpc-link/main';
 
    process.once('loaded', async () => {
      exposeElectronTRPC();
    });
    ```
 
-   > Note: `trpc-electron` depends on `contextIsolation` being enabled, which is the default.
+   > Note: `@janwirth/electron-trpc-link` depends on `contextIsolation` being enabled, which is the default.
 
 3. When creating the client in the render process, use the `ipcLink` (instead of the HTTP or batch HTTP links):
 
    ```ts
    import { createTRPCClient } from '@trpc/client';
-   import { ipcLink } from 'trpc-electron/renderer';
+   import { ipcLink } from '@janwirth/electron-trpc-link/renderer';
 
    export const client = createTRPCClient({
      links: [ipcLink()],

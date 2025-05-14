@@ -1,6 +1,6 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
-import { createIPCHandler } from 'trpc-electron/main';
+import { createIPCHandler } from '../../../packages/electron-trpc-link/src/main';
 import { router } from './api';
 
 process.env.DIST = path.join(__dirname, '../dist');

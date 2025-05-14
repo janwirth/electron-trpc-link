@@ -12,7 +12,11 @@ type MaybePromise<TType> = Promise<TType> | TType;
 const getInternalId = (event: IpcMainEvent, request: ETRPCRequest) => {
   const messageId =
     request.method === 'request' ? request.operation.id : request.id;
-  return `${event.sender.id}-${event.senderFrame.routingId}:${messageId}`;
+  if (event.senderFrame) {
+    return `${event.sender.id}-${event.senderFrame.routingId}:${messageId}`;
+  } else {
+    throw new Error('No sender frame');
+  }
 };
 
 class IPCHandler<TRouter extends AnyTRPCRouter> {

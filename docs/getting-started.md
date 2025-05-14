@@ -7,19 +7,19 @@ Follow installation instructions for [trpc](https://trpc.io/docs/quickstart#inst
 #### pnpm
 
 ```sh
-pnpm add trpc-electron
+pnpm add @janwirth/electron-trpc-link
 ```
 
 #### yarn
 
 ```sh
-yarn add trpc-electron
+yarn add @janwirth/electron-trpc-link
 ```
 
 #### npm
 
 ```sh
-npm install --save trpc-electron
+npm install --save @janwirth/electron-trpc-link
 ```
 
 ## TypeScript
@@ -32,12 +32,12 @@ It's worth noting that you'll need to figure out how to get TypeScript working o
 
 Some familiarization with these concepts can be helpful in case of unexpected issues during setup.
 
-This is the most minimal working preload file for using `trpc-electron`. Depending on your application, you may need to add this to an existing preload file or customize it later.
+This is the most minimal working preload file for using `@janwirth/electron-trpc-link`. Depending on your application, you may need to add this to an existing preload file or customize it later.
 
 ::: code-group
 
 ```ts [preload.ts]
-import { exposeElectronTRPC } from 'trpc-electron/main';
+import { exposeElectronTRPC } from '@janwirth/electron-trpc-link/main';
 
 process.once('loaded', async () => {
   exposeElectronTRPC();
@@ -54,7 +54,7 @@ In the main electron process, you will want to expose a tRPC router to one or mo
 
 ```ts{7-10,13} [main.ts]
 import { app } from 'electron';
-import { createIPCHandler } from 'trpc-electron/main';
+import { createIPCHandler } from '@janwirth/electron-trpc-link/main';
 import { router } from './api';
 
 app.on('ready', () => {
@@ -79,7 +79,7 @@ Windows you construct with the preload file and the IPC handler can reach the tR
 
 ```ts [renderer.ts]
 import { createTRPCClient } from '@trpc/client';
-import { ipcLink } from 'trpc-electron/renderer';
+import { ipcLink } from '@janwirth/electron-trpc-link/renderer';
 
 export const client = createTRPCClient({
   links: [ipcLink()],

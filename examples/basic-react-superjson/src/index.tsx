@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
-import { ipcLink } from 'trpc-electron/renderer';
+import { ipcLink } from '@janwirth/electron-trpc-link/renderer';
 import superjson from 'superjson';
 import { createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -14,7 +14,7 @@ function App() {
     trpcReact.createClient({
       links: [ipcLink()],
       transformer: superjson,
-    })
+    }),
   );
 
   return (
