@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import { ipcLink } from '../../../packages/electron-trpc-link/src/renderer';
+// import { ipcLink } from '../../../packages/electron-trpc-link/dist/renderer';
 import { createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppRouter } from '../electron/api';
@@ -34,7 +35,7 @@ function HelloElectron() {
       console.log('complete');
     },
     onData: data => {
-      console.log('data from observable', data.text);
+      console.log('data from observable', data);
     },
   });
   trpcReact.subscription2.useSubscription(undefined, {

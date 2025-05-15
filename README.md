@@ -1,14 +1,14 @@
 # @janwirth/electron-trpc-link
 
 > [!NOTE]
-> This is a fork of [jsonnull/electron-trpc](https://github.com/jsonnull/electron-trpc) for TRPC v11.x.x since that version introduces many breaking changes.
+> This is a fork of [jsonnull/electron-trpc](https://github.com/jsonnull/electron-trpc) for TRPC v11.1.x since that version introduces many breaking changes.
 
 <p>
   <a href="https://www.npmjs.com/package/@janwirth/electron-trpc-link">
     <img alt="NPM" src="https://img.shields.io/npm/v/@janwirth/electron-trpc-link"/>
   </a>
-  <a href="https://codecov.io/gh/mat-sz/@janwirth/electron-trpc-link"> 
-  <img src="https://codecov.io/gh/mat-sz/@janwirth/electron-trpc-link/branch/main/graph/badge.svg?token=DU33O0D9LZ"/> 
+  <a href="https://codecov.io/gh/janwirth/electron-trpc-link"> 
+  <img src="https://codecov.io/gh/janwirth/electron-trpc-link/branch/main/graph/badge.svg?token=DU33O0D9LZ"/> 
   </a>
   <span>
     <img alt="MIT" src="https://img.shields.io/npm/l/@janwirth/electron-trpc-link"/>
@@ -82,3 +82,11 @@ npm install --save @janwirth/electron-trpc-link
    ```
 
 4. Now you can use the client in your render process as you normally would (e.g. using `@trpc/react`).
+
+## Transformers
+
+Tend not to be necessary, ipc can handle almost everything.
+
+# Acknowledgements
+
+jsonnull mat-sz for previous developments

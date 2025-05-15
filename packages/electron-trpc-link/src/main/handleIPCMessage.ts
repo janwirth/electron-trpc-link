@@ -44,6 +44,7 @@ export async function handleIPCMessage<TRouter extends AnyTRPCRouter>({
   }
 
   const { type, input: serializedInput, path, id } = message.operation;
+  console.log(router._def._config.transformer);
   const input = serializedInput
     ? router._def._config.transformer.input.deserialize(serializedInput)
     : undefined;

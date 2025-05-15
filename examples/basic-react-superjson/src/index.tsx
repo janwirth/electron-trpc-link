@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ReactDom from 'react-dom';
-import { ipcLink } from '@janwirth/electron-trpc-link/renderer';
-import superjson from 'superjson';
+import ReactDom from 'react-dom/client';
+// import { ipcLink } from '@janwirth/electron-trpc-link/renderer';
+import { ipcLink } from '../../../packages/electron-trpc-link/dist/renderer';
+import superjson, { SuperJSON } from 'superjson';
 import { createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppRouter } from '../electron/api';
@@ -12,8 +13,7 @@ function App() {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpcReact.createClient({
-      links: [ipcLink()],
-      transformer: superjson,
+      links: [ipcLink({ transformer: SuperJSON })],
     }),
   );
 
@@ -33,6 +33,17 @@ function HelloElectron() {
       console.log(data);
     },
   });
+  trpcReact.subscription2.useSubscription(undefined, {
+    onError: error => {
+      console.error('error', error);
+    },
+    onComplete: () => {
+      console.log('complete');
+    },
+    onData: data => {
+      console.log('data from generator', data);
+    },
+  });
 
   if (!data) {
     return null;
@@ -41,4 +52,5 @@ function HelloElectron() {
   return <div>{data.text}</div>;
 }
 
-ReactDom.render(<App />, document.getElementById('react-root'));
+const root = ReactDom.createRoot(document.getElementById('react-root')!);
+root.render(<App />);

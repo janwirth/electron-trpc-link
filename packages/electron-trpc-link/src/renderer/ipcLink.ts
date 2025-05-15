@@ -105,6 +105,7 @@ export function ipcLink<TRouter extends AnyTRPCRouter>(
   return () => {
     const client = new IPCClient();
     const transformer = getTransformer(opts?.transformer);
+    console.log('transformer', opts?.transformer);
 
     return ({ op }) => {
       return observable(observer => {

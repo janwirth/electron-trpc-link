@@ -34,8 +34,11 @@ export const router = t.router({
     });
   }),
   subscription: t.procedure.subscription(async function* () {
+    yield { text: new Set([1, 2, 3]) };
+    yield { text: new Date() };
     yield { text: 'WASSUP' };
     yield { text: 'WASSUP2' };
+    yield { text: new Error('ERRORRRR') };
   }),
 });
 

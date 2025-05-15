@@ -1,6 +1,7 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
-import { createIPCHandler } from '@janwirth/electron-trpc-link/main';
+// import { createIPCHandler } from '@janwirth/electron-trpc-link/main';
+import { createIPCHandler } from '../../../packages/electron-trpc-link/dist/main';
 import { router } from './api';
 
 process.env.DIST = path.join(__dirname, '../dist');
@@ -23,7 +24,7 @@ app.on('ready', () => {
   if (url) {
     win.loadURL(url);
   } else {
-    win.loadFile(path.join(process.env.DIST, 'index.html'));
+    win.loadFile(path.join(process.env.DIST!, 'index.html'));
   }
 
   win.show();
