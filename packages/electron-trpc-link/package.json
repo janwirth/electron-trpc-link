@@ -1,5 +1,5 @@
 {
-  "name": "@janwirth/electron-trpc",
+  "name": "@janwirth/electron-trpc-link",
   "description": "tRPC link for Electron",
   "version": "11.1.2",
   "exports": {
@@ -28,7 +28,6 @@
     "copy:types": "cp dist/main.d.ts dist/renderer.d.ts ./",
     "test": "vitest -c vitest.config.ts",
     "test:ci": "vitest run -c vitest.config.ts --coverage",
-    "prepublishOnly": "corepack yarn build",
     "changeset": "changeset",
     "release": "changeset publish"
   },
