@@ -1034,9 +1034,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@janwirth/electron-trpc@workspace:packages/electron-trpc-link":
+"@janwirth/electron-trpc-link@workspace:packages/electron-trpc-link":
   version: 0.0.0-use.local
-  resolution: "@janwirth/electron-trpc@workspace:packages/electron-trpc-link"
+  resolution: "@janwirth/electron-trpc-link@workspace:packages/electron-trpc-link"
   dependencies:
     "@tanstack/react-query": "npm:^5.76.1"
     "@trpc/client": "npm:^11.1.2"

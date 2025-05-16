@@ -24,12 +24,10 @@ export function makeAsyncResource<T>(
   thing: T,
   dispose: () => Promise<void>,
 ): T & AsyncDisposable {
-  console.log('makeAsyncResource', thing, dispose);
   const it = thing as T & AsyncDisposable;
 
   // eslint-disable-next-line no-restricted-syntax
   if (it[Symbol.asyncDispose]) {
-    console.log(Symbol.asyncDispose, it[Symbol.asyncDispose]);
     return it;
     // throw new Error('Symbol.asyncDispose already exists');
   }

@@ -1,7 +1,7 @@
 {
   "name": "@janwirth/electron-trpc-link",
   "description": "tRPC link for Electron",
-  "version": "11.1.2",
+  "version": "11.1.2-bugfix-1",
   "exports": {
     "./main": {
       "types": "./dist/main.d.ts",
