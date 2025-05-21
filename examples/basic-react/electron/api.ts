@@ -8,6 +8,16 @@ const ee = new EventEmitter();
 const t = initTRPC.create({ isServer: true });
 
 export const router = t.router({
+  errorMutation: t.procedure.mutation(async () => {
+    throw new Error('ERRORRRR');
+  }),
+  errorQuery: t.procedure.query(() => {
+    throw new Error('ERRORRRR');
+  }),
+  errorSubscription: t.procedure.subscription(async function* () {
+    yield 'FIRST OKAY';
+    throw new Error('SUB ERROR ERRORRRR EXPECTED');
+  }),
   greeting: t.procedure.input(z.object({ name: z.string() })).query(req => {
     const { input } = req;
     setTimeout(() => {
