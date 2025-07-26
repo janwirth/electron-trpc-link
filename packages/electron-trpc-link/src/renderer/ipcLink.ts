@@ -65,7 +65,6 @@ class IPCClient {
   }
 
   request(op: Operation, callbacks: IPCCallbacks) {
-    console.log('request', op);
     const { type, id } = op;
 
     this.#pendingRequests.set(id, {
@@ -85,7 +84,6 @@ class IPCClient {
 
       // this is the cleanup for the subscription
       if (type === 'subscription') {
-        console.log('stopping subscription');
         this.#electronTRPC.sendMessage({
           id,
           method: 'subscription.stop',
@@ -105,7 +103,6 @@ export function ipcLink<TRouter extends AnyTRPCRouter>(
   return () => {
     const client = new IPCClient();
     const transformer = getTransformer(opts?.transformer);
-    console.log('transformer', opts?.transformer);
 
     return ({ op }) => {
       return observable(observer => {
